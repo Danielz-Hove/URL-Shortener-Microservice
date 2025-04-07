@@ -27,8 +27,6 @@ app.get('/api/hello', function(req, res) {
   res.json({ greeting: 'hello API' });
 });
 
-// --- URL Shortener Logic ---
-
 // In-memory storage (replace with a database for a real-world persistent app)
 let urlDatabase = {}; // Store mapping like { '1': 'https://google.com', '2': 'https://freecodecamp.org' }
 let shortUrlCounter = 1; // Simple counter to generate unique IDs
@@ -84,13 +82,10 @@ app.get('/api/shorturl/:short_url', function(req, res) {
     res.redirect(originalUrl);
   } else {
     // If not found, respond with an error (or maybe a 404 page)
-    // The tests don't specify this error case, but a JSON error is consistent
     res.json({ error: 'No short URL found for the given input' });
-    // Alternatively: res.status(404).send('Short URL not found');
   }
 });
 
-// --- End URL Shortener Logic ---
 
 app.listen(port, function() {
   console.log(`Listening on port ${port}`);
